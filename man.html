@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>居中的按钮</title>
+<style>
+  /* 样式设置 */
+  body {
+    display: flex;
+    flex-direction: column; /* 垂直排列子元素 */
+    align-items: center; /* 水平居中子元素 */
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .button {
+    padding: 40px 60px;
+    font-size: 26px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    text-decoration: none; /* 移除链接的下划线 */
+    transition: background-color 0.3s;
+  }
+  .button:hover {
+    background-color: #0056b3
+}
+.text {
+    font-size: 22px; /* 文本大小 */
+    color: #000000; /* 文本颜色 */
+    margin-top: 30px; /* 文本和按钮之间的间距 */
+  };
+</style>
+</head>
+<body onload="redirect()">
+
+<!-- 按钮 -->
+<a class="button" onclick="CallMe()">点击我 拨打电话</a>
+<!-- 文本 -->
+<div class="text" id='MyPhoneNumber'>车主电话：</div>
+
+<script>
+    // JavaScript函数用于获取URL参数并跳转
+    function redirect() {
+      // 获取当前URL中的查询参数
+      const urlParams = new URLSearchParams(window.location.search);
+      const telValue = urlParams.get('tel'); // 假设参数名为'tel'
+      let element = document.getElementById('MyPhoneNumber');
+      element.textContent =`车主电话：${telValue}`;
+      return telValue
+    }
+    function CallMe(){
+        let telValue = redirect();
+      // 构建新的URL
+      const newUrl = `tel://${telValue}`;
+      // 跳转到新的URL
+      window.location.href = newUrl;
+    }
+    function pushNumber(){
+      let telValue = redirect();
+
+    }
+  </script>
+</body>
